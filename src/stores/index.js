@@ -88,7 +88,8 @@ export const useStore = defineStore(`store`, () => {
     renderer.reset()
     renderer.setOptions({ status: isCiteStatus.value, legend: legend.value })
     marked.setOptions({ renderer })
-    let outputTemp = marked.parse(editor.value.getValue(0))
+    const editorVal = "```\n" + editor.value.getValue(0) + "\n```"
+    let outputTemp = marked.parse(editorVal)
 
     // 去除第一行的 margin-top
     outputTemp = outputTemp.replace(/(style=".*?)"/, `$1;margin-top: 0"`)
